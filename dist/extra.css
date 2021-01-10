@@ -18,8 +18,8 @@ blockquote:before {
 
 section[data-background] h1 { 
        background-color:rgba(233,223,213,0.6);
-       padding: 50px;
-       margin: 20px;
+       padding: 30px;
+       margin: 15px;
        border-radius: 30px
 }
 
@@ -54,6 +54,13 @@ section[data-background] blockquote {
        padding: 20px;
        margin: 10px;
        border-radius: 15px
+}
+
+section[data-background] h4 {
+       background-color:rgba(223,223,243,0.7);
+       padding: 15px;
+       margin: 6px;
+       border-radius: 10px
 }
 
 .pink { 
