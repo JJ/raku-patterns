@@ -59,6 +59,20 @@ my $p = start react {
 }
 await $p, $one, $two;</code></pre></section>
 
+              <section>
+                <section data-background='https://live.staticflickr.com/65535/49109722841_40f491724c_o_d.jpg'><h1>Let's Raku & Role</h1>
+                  <h2 class='fragment'><strong>Roles/mixins</strong> contain
+                  <em>composable</em> attributes, methods or both</h2>
+                </section>
+
+                <section><h1>Let's mix in some roles</h1>
+                  <pre><code>say "$_ → " ~ $_.Bool for (^10).map: { $_ but so $_ %% 2 };</code></pre>
+
+                  <script id="asciicast-8QT3g99An0TPpWBkKkBZL84kB" src="https://asciinema.org/a/8QT3g99An0TPpWBkKkBZL84kB.js" async data-autoplay="true" ></script>
+                </section>
+
+              </section>
+
 	    </div>
 	  </div>
 
