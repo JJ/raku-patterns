@@ -89,23 +89,37 @@ for ^10 -> $κ {
 
               <section>
                 <section><h2>🗱①: Type-safe tunnelling</h2>
-                  <pre><code data-line-numbers="3,7,9|15">constant one-mil = 1_000_000;
-my UInt @primes = (^one-mil).grep: *.is-prime;
-sub priming( UInt $num where * < one-mil--> Array[UInt] ) {
-    my @these-primes = @primes.grep: * <= $num/2;
-    my UInt @factors = $num.polymod( @these-primes );
-    if ( @factors[*-1] == 1 and @factors.sum == 1 ) {
+                  <pre><code data-line-numbers="1,5,7,9|15">sub priming( UInt $num where * --> Array[UInt] ) {
+    my @these-primes = (^($num/2)).grep: *.is-prime;
+    my UInt @factors = @these-primes.grep: !( $num mod * );
+    if ( (1,|@factors).sum == $num ) {
         return @factors but "👑";
+    } elsif !@factors {
+        return @factors but "🍅";
     } else {
         return @factors;
     }
 }
 
-for ^10 -> $n {
+for ^1000 -> $n {
     my $result = priming($n);
     say $n, ", ", ~$result;
 }</code></pre>
                 </section>
+
+                <section><h1>Some light at the end</h1>
+                  <script id="asciicast-JezPoYTSt4Ky7y906tDBJ6HWK"
+                  src="https://asciinema.org/a/JezPoYTSt4Ky7y906tDBJ6HWK.js"
+                  data-autoplay="true" data-speed="0.5" 
+                          async></script>
+                </section>
+              </section>
+
+              <section> <!-- Grammars -->
+                <section><h1>Grammars are to regexes what classes are
+                  to soutines</h1>
+                  <aside class='notes'>A way to organize the parsing
+                    of a document string.</aside>
               </section>
 
 	    </div>
