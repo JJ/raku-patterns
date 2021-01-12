@@ -68,9 +68,23 @@ await $p, $one, $two;</code></pre></section>
                 <section><h1>Let's mix in some roles</h1>
                   <pre><code>say "$_ → " ~ $_.Bool for (^10).map: { $_ but so $_ %% 2 };</code></pre>
 
-                  <script id="asciicast-8QT3g99An0TPpWBkKkBZL84kB" src="https://asciinema.org/a/8QT3g99An0TPpWBkKkBZL84kB.js" async data-autoplay="true" ></script>
+                  <img src='img/even-odd.gif' alt='Roling even or odd'>
                 </section>
 
+                <section><h1>And give them some colors</h1>
+                  <pre><code data-line-numbers="3">use Colorizable;
+for ^10 -> $κ {
+    my $ಕ = ($κ but uniname(~$κ)) but Colorizable;
+    (given $ಕ mod 3 {
+        when 0 { $ಕ.colorize(:fg(red)) }
+        when 1 { $ಕ.colorize(:fg(yellow)) }
+        when 2 { $ಕ.colorize(:fg(blue)) }
+    }).say
+};</code></pre>
+                </section>
+                <section><h1>Show the true colors</h1>
+                  <img src='img/colorized.gif' alt='Colored names'>
+                </section>
               </section>
 
 	    </div>
