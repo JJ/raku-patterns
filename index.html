@@ -201,13 +201,18 @@ factors( $_ )  for 2..5000;</code></pre>
                 </section>
 
                 <section><h1>Do</h1>
-                  <pre><code data-line-numbers='4|7|6''>constant MAX-NUM = 5_000;
+                  <pre><code data-line-numbers='4|7-10|6''>constant MAX-NUM = 5_000;
 my @these-primes = (^(MAX-NUM/2)).grep: *.is-prime;
 sub is-mod( $n, $b ) { ! ($n mod $b ) } 
 my @modders = @these-primes.map: -> $b { ( -> $c { is-mod( $c, $b ) } ) but $b };
 
 (2..MAX-NUM).race.map: -> $n {
-    say $n, " ", ($_.Int ~ " " for @modders.grep( *.Int <= $n/2).grep: { $_($n) } ).join( ", " ) || '🍅';
+    say $n, " ",
+      @modders.grep( *.Int <= $n/2)
+              .grep( { $_($n) } )
+              .map( *.Int ~ " " )
+              .join( ", " ) 
+     || '🍅';
 ;}</code></pre>
                   <aside class='notes'>The real kicker is using
                     <code>race</code> to paralellize search. This uses
