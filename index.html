@@ -201,7 +201,7 @@ factors( $_ )  for 2..5000;</code></pre>
                 </section>
 
                 <section><h1>Do</h1>
-                  <pre><code data-line-numbers=''>constant MAX-NUM = 5_000;
+                  <pre><code data-line-numbers='4|7|6''>constant MAX-NUM = 5_000;
 my @these-primes = (^(MAX-NUM/2)).grep: *.is-prime;
 sub is-mod( $n, $b ) { ! ($n mod $b ) } 
 my @modders = @these-primes.map: -> $b { ( -> $c { is-mod( $c, $b ) } ) but $b };
