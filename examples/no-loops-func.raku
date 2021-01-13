@@ -7,4 +7,4 @@ my @modders = @these-primes.map: -> $b { ( -> $c { is-mod( $c, $b ) } ) but $b }
 
 (2..MAX-NUM).race.map: -> $n {
     say $n, " ", ($_.Int ~ " " for @modders.grep( *.Int <= $n/2).grep: { $_($n) } ).join( ", " ) || '🍅';
-};
+;}
