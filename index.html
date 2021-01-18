@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
+
     <title>Raku patterns</title>
-    
+
     <link rel="stylesheet" href="dist/reset.css">
     <link rel="stylesheet" href="dist/extra.css">
     <link rel="stylesheet" href="dist/reveal.css">
     <link rel="stylesheet" href="dist/raku-patterns.css" id="theme">
-    
+
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
   </head>
@@ -107,10 +107,8 @@ for ^1000 -> $n {
 }</code></pre>
                 </section>
 
-                <section><h2>Some light at the end</h2>
-                  <script id="asciicast-JezPoYTSt4Ky7y906tDBJ6HWK"
-                  src="https://asciinema.org/a/JezPoYTSt4Ky7y906tDBJ6HWK.js"
-                  data-autoplay="true" data-speed="0.5" async></script>
+<section><h1>Some light at the end</h1>
+  <a href="https://asciinema.org/a/JezPoYTSt4Ky7y906tDBJ6HWK"><img src="https://asciinema.org/a/JezPoYTSt4Ky7y906tDBJ6HWK.svg" /></a>
                 </section>
               </section>
 
@@ -180,7 +178,7 @@ for "1 cup lentils", "½ clove garlic", "2 eggs" -> $m {
                 we don't even call them for. It's like "do you have
                 this for loop? Noooo... (Scrapes the bottom of the
                     barrel) Wait, we have this thing called
-                    <code>loop</code> that...</aside>
+                    <code>loop</code> that..."</aside>
                 </section>
                 
                 <section><h1>(Don't) Loop</h1>
@@ -210,7 +208,7 @@ my @modders = @these-primes.map: -> $b { ( -> $c { is-mod( $c, $b ) } ) but $b }
       @modders.grep( *.Int <= $n/2)
               .grep( { $_($n) } )
               .map( *.Int ~ " " )
-              .join( ", " ) 
+              .join( ", " )
      || '🍅';
 ;}</code></pre>
                   <aside class='notes'>The real kicker is using
@@ -220,10 +218,7 @@ my @modders = @these-primes.map: -> $b { ( -> $c { is-mod( $c, $b ) } ) but $b }
                 </section>
 
                 <section><h1>Showing the primes</h1>
-                  <script id="asciicast-LjBL86r3jHqSPYAjAAOswJHTL"
-                          src="https://asciinema.org/a/LjBL86r3jHqSPYAjAAOswJHTL.js"
-                          data-autoplay="true"
-                          async></script>
+		  <a href="https://asciinema.org/a/LjBL86r3jHqSPYAjAAOswJHTL"><img src="https://asciinema.org/a/LjBL86r3jHqSPYAjAAOswJHTL.svg" /></a>
                 </section>
               </section>
 
