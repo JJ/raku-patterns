@@ -94,7 +94,6 @@ for ^10 -> $κ {
                 </section>
               </section>
 
-              <section>
                   <section><h2>🗱 Túneles <em>type-safe</em></h2>
                   <pre><code data-line-numbers="1,5,7,9|15">sub priming( UInt $num where * --> Array[UInt] ) {
     my @these-primes = (^($num/2)).grep: *.is-prime;
@@ -115,13 +114,14 @@ for ^1000 -> $n {
                 </section>
 
               <section> <!-- Grammars -->
-                <section><h1>Gramáticas ⇼ regexes como clases ⇼ funciones </h1>
-                  <aside class='notes'>A way to organize the parsing
-                    of a document string. Es el único lenguaje que ha creado
-                este tipo de estructuras de datos.</aside>
-                </section>
 
-                <section
+                  <section><h1>Gramáticas ⇼ regexes como clases ⇼ funciones </h1>
+                      <aside class='notes'>A way to organize the parsing
+                          of a document string. Es el único lenguaje que ha creado
+                          este tipo de estructuras de datos.</aside>
+                  </section>
+
+                  <section
                 data-background='https://live.staticflickr.com/65535/50827800007_4da507728a_k_d.jpg'><h1>De
                   "Raku Recipes"</h1>
                   <pre><code data-line-numbers="2|2-4|3,7|1,8">grammar Measurements {
@@ -133,6 +133,9 @@ for ^1000 -> $n {
 for "3 tbsps", "½ cup", "𐄩 cloves" -> $m {
     say Measurements.parse( $m );
 }</code></pre>
+                  <aside class="notes">El símbolo que parece una huevera es el
+    número egeo 8000. Por qué tenían los egeos un símbolo para representar 8000,
+                      vaya usted a saber.</aside>
                 </section>
 
                 <section
@@ -149,8 +152,12 @@ for "3 tbsps", "½ cup", "𐄩 cloves" -> $m {
  unit => ｢cloves｣</code></pre>
                 </section>
 
-                <section data-background='https://live.staticflickr.com/1871/44270494591_e6d4ea42d8_k_d.jpg'><h1>🗱②: <em>Grammaroles</em>: Roles that can be
-                  composed into grammars.</h1>
+                <section
+                data-background='https://live.staticflickr.com/1871/44270494591_e6d4ea42d8_k_d.jpg'><h1>🗱②:
+                <em>Grammaroles</em>: Roles que se pueden componer en
+                gramáticas.</h1>
+
+                <aside class="notes">Hala, ahí lo dejo.</aside>
                 </section>
 
                 <section><pre><code data-line-numbers="3-6|7|8|1,2,5,12">my @unit-types=&lt;g tbsp clove cup sp pinch>;
@@ -174,10 +181,10 @@ for "1 cup lentils", "½ clove garlic", "2 eggs" -> $m {
               </section>
 
 
-                <section><h1>Do</h1>
+                <section><h1>Tomatazo final</h1>
                   <pre><code data-line-numbers='4|7-10|6''>constant MAX-NUM = 5_000;
 my @these-primes = (^(MAX-NUM/2)).grep: *.is-prime;
-sub is-mod( $n, $b ) { ! ($n mod $b ) } 
+sub is-mod( $n, $b ) { ! ($n mod $b ) }
 my @modders = @these-primes.map: -> $b { ( -> $c { is-mod( $c, $b ) } ) but $b };
 
 (2..MAX-NUM).race.map: -> $n {
