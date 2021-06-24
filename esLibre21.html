@@ -65,19 +65,20 @@ await $p, $one, $two;</code></pre>
                 canales son un objeto), uso de Unicode, concurrencia con atomic-assign...</aside>
         </section>
 
-              <section>
-                <section data-background='https://live.staticflickr.com/65535/49109722841_40f491724c_o_d.jpg'><h1>Let's Raku & Role</h1>
-                  <h2 class='fragment'><strong>Roles/mixins</strong> contain
-                  <em>composable</em> attributes, methods or both</h2>
+        <section>
+            <section data-background='https://live.staticflickr.com/65535/49109722841_40f491724c_o_d.jpg'><h1>Let's Raku & Role</h1>
+                <h2 class='fragment'>OO moderna</h2>
+                <h3 class="fragment"> <strong>Roles/mixins</strong> contienen
+            atributos  <em>componibles</em>, métodos o los dos</h3>
                 </section>
 
-                <section><h1>Let's mix in some roles</h1>
+                <section><h1>Mezclemos algunos roles</h1>
                   <pre><code>say "$_ → " ~ $_.Bool for (^10).map: { $_ but so $_ %% 2 };</code></pre>
 
                   <img src='img/even-odd.gif' alt='Roling even or odd'>
                 </section>
 
-                <section><h1>And give them some colors</h1>
+                <section><h1>Y démosle color</h1>
                   <pre><code data-line-numbers="3">use Colorizable;
 for ^10 -> $κ {
     my $ψ = ($κ but uniname(~$κ)) but Colorizable;
@@ -88,13 +89,13 @@ for ^10 -> $κ {
     }).say
 };</code></pre>
                 </section>
-                <section><h1>Show the true colors</h1>
+                <section><h1>Muestra los colores</h1>
                   <img src='img/colorized.gif' alt='Colored names'>
                 </section>
               </section>
 
               <section>
-                <section><h2>🗱①: Type-safe tunnelling</h2>
+                  <section><h2>🗱 Túneles <em>type-safe</em></h2>
                   <pre><code data-line-numbers="1,5,7,9|15">sub priming( UInt $num where * --> Array[UInt] ) {
     my @these-primes = (^($num/2)).grep: *.is-prime;
     my UInt @factors = @these-primes.grep: !( $num mod * );
@@ -113,21 +114,16 @@ for ^1000 -> $n {
 }</code></pre>
                 </section>
 
-<section><h1>Some light at the end</h1>
-  <a href="https://asciinema.org/a/JezPoYTSt4Ky7y906tDBJ6HWK"><img src="https://asciinema.org/a/JezPoYTSt4Ky7y906tDBJ6HWK.svg" /></a>
-                </section>
-              </section>
-
               <section> <!-- Grammars -->
-                <section><h1>Grammars are to regexes what classes are
-                  to routines</h1>
+                <section><h1>Gramáticas ⇼ regexes como clases ⇼ funciones </h1>
                   <aside class='notes'>A way to organize the parsing
-                    of a document string.</aside>
+                    of a document string. Es el único lenguaje que ha creado
+                este tipo de estructuras de datos.</aside>
                 </section>
 
                 <section
-                data-background='https://live.staticflickr.com/65535/50827800007_4da507728a_k_d.jpg'><h1>From
-                  Raku Recipes</h1>
+                data-background='https://live.staticflickr.com/65535/50827800007_4da507728a_k_d.jpg'><h1>De
+                  "Raku Recipes"</h1>
                   <pre><code data-line-numbers="2|2-4|3,7|1,8">grammar Measurements {
     token TOP      { &lt;quantity> \h* &lt;unit>? }
     token quantity { &lt;:N>+ }
@@ -139,7 +135,9 @@ for "3 tbsps", "½ cup", "𐄩 cloves" -> $m {
 }</code></pre>
                 </section>
 
-                <section data-background='https://live.staticflickr.com/886/26492154807_2d378194fe_k_d.jpg'><h1>Getting the ingredients</h1>
+                <section
+                  data-background='https://live.staticflickr.com/886/26492154807_2d378194fe_k_d.jpg'><h1>Obteniendo
+                  los ingredientes</h1>
                   <pre><code>｢3 tbsps｣
  quantity => ｢3｣
  unit => ｢tbsps｣
@@ -175,33 +173,6 @@ for "1 cup lentils", "½ clove garlic", "2 eggs" -> $m {
                 </section>
               </section>
 
-              <section>
-                <section
-                data-background='https://live.staticflickr.com/1062/868367959_ea85610d05_k_d.jpg'><h1>Antipattern:
-                  using classic <code>for</code> indexed loops</h1>
-
-                  <aside class='notes'>We dislike them so much that
-                we don't even call them for. It's like "do you have
-                this for loop? Noooo... (Scrapes the bottom of the
-                    barrel) Wait, we have this thing called
-                    <code>loop</code> that..."</aside>
-                </section>
-                
-                <section><h1>(Don't) Loop</h1>
-                  <pre><code data-line-numbers='4-6|9'>sub factors( $num ) {
-    my @these-primes = (^($num/2)).grep: *.is-prime;
-    print "\nFactors for $num →";
-    loop ( my $i = 1; $i < @these-primes.elems; $i++ ) {
-        (@these-primes[$i]~" ").print unless $num mod @these-primes[$i];
-    }
-}
-
-factors( $_ )  for 2..5000;</code></pre>
-                  <aside class='notes'>This creates an unclean
-                  variable that's not really needed, and does not
-                  really show what we want: a function that turns a
-                  number into its factors. </aside>
-                </section>
 
                 <section><h1>Do</h1>
                   <pre><code data-line-numbers='4|7-10|6''>constant MAX-NUM = 5_000;
@@ -223,43 +194,41 @@ my @modders = @these-primes.map: -> $b { ( -> $c { is-mod( $c, $b ) } ) but $b }
     the original version.</aside>
                 </section>
 
-                <section><h1>Showing the primes</h1>
-		  <a href="https://asciinema.org/a/LjBL86r3jHqSPYAjAAOswJHTL"><img src="https://asciinema.org/a/LjBL86r3jHqSPYAjAAOswJHTL.svg" /></a>
-                </section>
-              </section>
-
-              <section data-background='https://live.staticflickr.com/3424/3176606663_8ebd089c7c_k_d.jpg'><h1>Multiple paradigms</h1>
-                <h1 class='fragment'>Multiple patterns</h1>
-                <h2 class='fragment'>But TIMTOWDI</h2>
+              <section
+                data-background='https://live.staticflickr.com/3424/3176606663_8ebd089c7c_k_d.jpg'><h1>Paradigmas
+                múltiples</h1>
+                <h1 class='fragment'>Patrones múltiples</h1>
+                <h2 class='fragment'>Pero hay muchas formas de hacerlo</h2>
               </section>
 
               <section
                 data-background='https://live.staticflickr.com/7829/47543131791_89dab636e1_k_d.jpg'>
-                <H1>Give <a href='https://raku.org'>Raku</a> a
-              chance</H1>
+                <H1>Dadle a <a href='https://raku.org'>Raku</a> una
+                    oportunidad</H1>
+                <h2 class="fragment">También mañana en la devroom Raku & friends</h2>
               </section>
 
 	    </div>
 	  </div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-			  hash: true,
-                          width: '95%',
-                          controls: true,
-                          progress: true,
-                          history: true,
-                          autoPlayMedia: true,
-				// Learn about plugins: https://revealjs.com/plugins/
-			  plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+	  <script src="dist/reveal.js"></script>
+	  <script src="plugin/notes/notes.js"></script>
+	  <script src="plugin/markdown/markdown.js"></script>
+	  <script src="plugin/highlight/highlight.js"></script>
+	  <script>
+	   // More info about initialization & config:
+	   // - https://revealjs.com/initialization/
+	   // - https://revealjs.com/config/
+	   Reveal.initialize({
+	       hash: true,
+               width: '95%',
+               controls: true,
+               progress: true,
+               history: true,
+               autoPlayMedia: true,
+	       // Learn about plugins: https://revealjs.com/plugins/
+	       plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+	   });
+	  </script>
+  </body>
 </html>
